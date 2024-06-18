@@ -33,12 +33,24 @@ class StorageService{
   static Future<void> addLocation(String username, String city) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String? locs = await prefs.getString(username);
-    List<String> locations;
     if (locs == null){
       return ;
     }
+    List<String> locations;
     locations = List<String>.from(jsonDecode(locs));
     locations.add(city);
+    prefs.setString(username, jsonEncode(locations));
+  }
+
+  static Future<void> removeLocation(String username, String city) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String? locs = await prefs.getString(username);
+    if (locs == null){
+      return ;
+    }
+    List<String> locations;
+    locations = List<String>.from(jsonDecode(locs));
+    locations.remove(city);
     prefs.setString(username, jsonEncode(locations));
   }
 

@@ -32,7 +32,15 @@ class _WeatherpageState extends State<Weatherpage> {
       appBar: AppBar(
         title: Text(widget.location),
         actions: [isFav ? 
-          IconButton(onPressed: () {}, icon:Icon(Icons.bookmark_remove))
+          IconButton(
+            onPressed: () {
+              StorageService.removeLocation(widget.username, widget.location);
+              setState(() {
+                isFav = false;
+              });
+            },
+            icon:Icon(Icons.bookmark_remove)
+            )
           : IconButton(
             onPressed: (){
               StorageService.addLocation(widget.username, widget.location);
@@ -62,49 +70,58 @@ class _WeatherpageState extends State<Weatherpage> {
                         padding: const EdgeInsets.all(16.0),
                         child: GridView.count(
                           shrinkWrap: true,
-                          childAspectRatio: 2.5,
+                          childAspectRatio: 2,
                           crossAxisCount: 2,
                           crossAxisSpacing: 10.0,
                           mainAxisSpacing: 10.0,
                           children: [
                             Container(
+                              height: 300.0,
                               padding: const EdgeInsets.all(8),
                               color: Colors.teal[100],
-                              child: Column(
-                                children: [
-                                  Text("Wind Speed", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 28.0)),
-                                  Text('${weatherService.speed} m/s', style: TextStyle(fontSize: 22.0),)
-                                ],
+                              child: SingleChildScrollView(
+                                child: Column(
+                                  children: [
+                                    Text("Wind Speed", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 28.0)),
+                                    Text('${weatherService.speed} m/s', style: TextStyle(fontSize: 22.0),)
+                                  ],
+                                ),
                               ),
                             ),
                             Container(
                               padding: const EdgeInsets.all(8),
                               color: Colors.teal[200],
-                              child: Column(
-                                children: [
-                                   Text("Humidity", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 28.0)),
-                                   Text('${weatherService.humidity} %', style: TextStyle(fontSize: 22.0),)
-                                ],
+                              child: SingleChildScrollView(
+                                child: Column(
+                                  children: [
+                                     Text("Humidity", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 28.0)),
+                                     Text('${weatherService.humidity} %', style: TextStyle(fontSize: 22.0),)
+                                  ],
+                                ),
                               ),
                             ),
                             Container(
                               padding: const EdgeInsets.all(8),
                               color: Colors.teal[100],
-                              child: Column(
-                                children: [
-                                   Text("Visibilty", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 28.0)),
-                                   Text('${weatherService.visibility} km', style: TextStyle(fontSize: 22.0),)
-                                ],
+                              child: SingleChildScrollView(
+                                child: Column(
+                                  children: [
+                                     Text("Visibilty", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 28.0)),
+                                     Text('${weatherService.visibility} km', style: TextStyle(fontSize: 22.0),)
+                                  ],
+                                ),
                               ),
                             ),
                             Container(
                               padding: const EdgeInsets.all(8),
                               color: Colors.teal[200],
-                              child: Column(
-                                children: [
-                                   Text("Pressure", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 28.0)),
-                                   Text('${weatherService.pressure} hpa', style: TextStyle(fontSize: 22.0),)
-                                ],
+                              child: SingleChildScrollView(
+                                child: Column(
+                                  children: [
+                                     Text("Pressure", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 28.0)),
+                                     Text('${weatherService.pressure} hpa', style: TextStyle(fontSize: 22.0),)
+                                  ],
+                                ),
                               ),
                             ),
                           ],
