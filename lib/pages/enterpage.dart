@@ -43,23 +43,29 @@ class _EnterpageState extends State<Enterpage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Center(child: Text('WEATHER APP')),
+        title: const Center(child: Text('WEATHER APP')),
         backgroundColor: Colors.blue.shade200,
       ),
+      backgroundColor: Color.fromARGB(255, 158, 255, 231),
       body: Padding(
         padding: const EdgeInsets.symmetric(vertical: 20.0,horizontal: 4.0),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
+            const SizedBox(height:50.0),
+            const Icon(Icons.sunny, size: 100.0,),
+            const SizedBox(height: 100.0,),
             MyTextField(controller: usernameController, hintText: 'Enter Username', obscureText: false),
+            const SizedBox(height: 10.0,),
+            MyTextField(controller: locationController, hintText: 'Enter Location if New User', obscureText: false),
+            const SizedBox(height: 10.0,),
             Container(
-              padding: EdgeInsets.all(2),
+              padding: const EdgeInsets.all(2),
               child: TextButton(
                 onPressed: enter,
-                child: Text('Enter')
+                child: const Text('Enter', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20.0),)
                 )
             ),
-            MyTextField(controller: locationController, hintText: 'Enter Location if New User', obscureText: false),
           ],
         ),
       ),
